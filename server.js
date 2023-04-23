@@ -12,8 +12,19 @@ app.get("/", function(request, response) {
 response.sendFile(__dirname + "/views/index.html");
 });
 
-app.post(‘/wbhcristal’, function(request, response) {
+app.post("/wbhcristal", function(request, response) {
 var intentName = request.body.queryResult.intent.displayName;
+
+  
+  
+
+  
+if (intentName == "cristal2020*") {
+
+ response.json({ "fulfillmentText" : "Isso aqui é um Teste"});
+ }
+});
+
 
 
 
