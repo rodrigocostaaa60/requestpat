@@ -12,7 +12,6 @@ app.post("/wbhcristal", async function (request, response) {
 
   if (intentName == "patrimonios") {
     var pat1 = request.body.queryResult.parameters["pat1"];
-    var pat2 = request.body.queryResult.parameters["pat2"];
 
     try {
       const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
