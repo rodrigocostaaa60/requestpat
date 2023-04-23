@@ -9,9 +9,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/wbhcristal", async function (request, response) {
   const agent = new WebhookClient({ request: request, response: response });
+  const intentName = agent.intent;
 
-  if (intentName == "teste") {
-    var pat1 = request.body.queryResult.parameters["pat1"];
+  if (intentName === "teste") {
+    const pat1 = request.body.queryResult.parameters["pat1"];
 
     try {
       const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
