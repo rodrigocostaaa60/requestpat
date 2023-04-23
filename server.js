@@ -15,44 +15,44 @@ app.post("/wbhcristal", async function (request, response) {
     const pat1 = request.body.queryResult.parameters["pat1"];
 
     try {
-  const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
-  const results = res.data.filter(
-    (person) => person.id === pat1 ||
-                person.nome === pat1 ||
-                person.pat1 === pat1 ||
-                person.pat2 === pat1
-);
+      const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
+      const results = res.data.filter(
+        (person) =>
+          person.id === pat1 ||
+          person.pat1 === pat1 ||
+          person.pat2 === pat1
+      );
       if (results.length > 0) {
         const person = results[0];
         const fulfillmentText =
-          "*Detalhes para a Sua Busca:* " +
+          "*🔍 Detalhes para a Sua Busca:* " +
           "\n" +
           "\n" +
-          "*ID da Ordem de Serviço:* " +
+          "*🆔 ID da Ordem de Serviço:* " +
           person.id +
           "\n" +
-          "*Nome do Cliente:* " +
+          "*👤 Nome do Cliente:* " +
           (person.nome ? person.nome : "N/A") +
           "\n" +
-          "*Patrimônio Nº1:* " +
+          "*💻 Patrimônio Nº1:* " +
           person.pat1 +
           "\n" +
-          "*Patrimônio Nº2:* " +
+          "*💻 Patrimônio Nº2:* " +
           person.pat2 +
           "\n" +
-          "*Data da Configuração:* " +
+          "*📅 Data da Configuração:* " +
           person.data +
           "\n" +
-          "*Hora da Configuração:* " +
+          "*⏰ Hora da Configuração:* " +
           person.hora +
           "\n" +
-          "*Tipo da Configuração:* " +
+          "*🔧 Tipo da Configuração:* " +
           person.tipo +
           "\n" +
-          "*Responsável da Configuração:* " +
+          "*👷 Responsável da Configuração:* " +
           person.responsavel +
           "\n" +
-          "*Link do Resultado:* " +
+          "*🌐 Link do Resultado:* " +
           person.speedtest +
           "\n";
         response.json({ fulfillmentText });
