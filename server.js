@@ -14,23 +14,27 @@ app.post("/wbhcristal", async function (request, response) {
   if (intentName === "teste") {
     const pat1 = request.body.queryResult.parameters["pat1"];
 
+    
     try {
       const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
-      const results = res.data.filter(person => person.pat1 === pat1);
+      const results = res.data.filter(
+        (person) => person.pat1 === pat1 || person.pat2 === pat1
+      );
 
       if (results.length > 0) {
         const person = results[0];
         const fulfillmentText =
-          "Detalhes para o pat1 " +
-          pat1 +
+          "Detalhes para a Sua Busca: " +
+          ":\n" +
           ":\n" +
           "ID da Ordem de Serviço: " +
           person.id +
           "\n" +
           "Nome do Cliente: " +
-          person.Nome +
-          "\n" +
-          "Patrimônio Nº1: " +
+          (person.Nome ? person.Nome : "N/A") +
+          "\n";
+
+        "Patrimônio Nº1: " +
           person.pat1 +
           "\n" +
           "Patrimônio Nº2: " +
@@ -54,13 +58,15 @@ app.post("/wbhcristal", async function (request, response) {
         response.json({ fulfillmentText });
       } else {
         response.json({
-          fulfillmentText: "Não foi possível encontrar detalhes para o pat1 " + pat1,
+          fulfillmentText:
+            "Não foi possível encontrar detalhes para o pat1 ou pat2 informado.",
         });
       }
     } catch (error) {
       console.log(error);
       response.json({
-        fulfillmentText: "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.",
+        fulfillmentText:
+          "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.",
       });
     }
   }
