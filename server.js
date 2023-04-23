@@ -31,6 +31,9 @@ app.post("/wbhcristal", async function (request, response) {
           "*🆔 ID da Ordem de Serviço:* " +
           person.id +
           "\n" +
+              "*🔧 Tipo da Ordem:* " +
+          person.tipo +
+          "\n" +
           "*👤 Nome do Cliente:* " +
           (person.nome ? person.nome : "N/A") +
           "\n" +
@@ -46,13 +49,10 @@ app.post("/wbhcristal", async function (request, response) {
           "*⏰ Hora da Configuração:* " +
           person.hora +
           "\n" +
-          "*🔧 Tipo da Configuração:* " +
-          person.tipo +
-          "\n" +
-          "*👷 Responsável da Configuração:* " +
+          "*👷 Responsável pela Configuração:* " +
           person.responsavel +
           "\n" +
-          "*🌐 Link do Resultado:* " +
+          "*🌐 Teste de Conexão:* " +
           person.speedtest +
           "\n";
         response.json({ fulfillmentText });
