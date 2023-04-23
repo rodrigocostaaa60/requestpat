@@ -56,7 +56,7 @@ app.post("/wbhcristal", async function (request, response) {
           person.speedtest +
           "\n" +
         "\n" +
-        "*Solicitação Aberta :* " +
+        "*👀 Aí vai uma dica: você pode encontrar todas as configurações da rede Wi-Fi e PPPoE dos clientes nesse link: https://www.appsheet.com/start/ad91934c-eea5-437f-8a35-44e32589e724 🚀💻* " +
           "\n";
         response.json({ fulfillmentText });
       } else {
