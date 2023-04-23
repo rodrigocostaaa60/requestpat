@@ -1,3 +1,8 @@
+const WebhookClient = require('dialogflow-fulfillment');
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.post("/wbhcristal", function (request, response) {
   var intentName = request.body.queryResult.intent.displayName;
 
