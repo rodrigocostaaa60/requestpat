@@ -1,9 +1,9 @@
 const WebhookClient = require('dialogflow-fulfillment');
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+const fastify = require('fastify')();
 
-app.post("/wbhcristal", function (request, response) {
+fastify.register(require('fastify-formbody'));
+
+fastify.post("/wbhcristal", function (request, response) {
   var intentName = request.body.queryResult.intent.displayName;
 
   if (intentName == "patrimonios") {
@@ -51,7 +51,7 @@ app.post("/wbhcristal", function (request, response) {
             "\n\n";
         });
 
-        response.json({
+        response.send({
           fulfillmentText: fulfillmentText,
         });
       })
@@ -67,3 +67,9 @@ app.post("/wbhcristal", function (request, response) {
       );
   }
 });
+
+fastify.listen(3000, (err) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+}
