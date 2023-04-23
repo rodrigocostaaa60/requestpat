@@ -56,7 +56,7 @@ app.post("/wbhcristal", async function (request, response) {
           person.speedtest +
           "\n" +
         "\n" +
-        "*🔍 Detalhes para a Sua Busca:* " +
+        "*Solicitação Aberta :* " +
           "\n";
         response.json({ fulfillmentText });
       } else {
