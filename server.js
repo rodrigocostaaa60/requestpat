@@ -1,7 +1,9 @@
-const WebhookClient = require('dialogflow-fulfillment');
-const fastify = require('fastify')();
+const WebhookClient = require("dialogflow-fulfillment");
+const fastify = require("fastify")();
+const axios = require('axios');
 
-fastify.register(require('fastify-formbody'));
+
+fastify.register(require("fastify-formbody"));
 
 fastify.post("/wbhcristal", function (request, response) {
   var intentName = request.body.queryResult.intent.displayName;
@@ -13,7 +15,11 @@ fastify.post("/wbhcristal", function (request, response) {
       .get("https://sheetdb.io/api/v1/w0t5ql0i871kj")
       .then((res) => {
         const results = res.data.filter((person) => {
-          return Object.keys(person).some((key) => person[key] === searchTerm);
+          return Object.keys(person).some(
+            (key) =>
+              person[key].toLowerCase().includes("pat1") &&
+              person[key].toLowerCase().includes("pat2")
+          );
         });
 
         let fulfillmentText = "";
@@ -72,4 +78,5 @@ fastify.listen(3000, (err) => {
   if (err) {
     console.error(err);
     process.exit(1);
-}
+  }
+});
