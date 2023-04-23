@@ -15,7 +15,7 @@ app.post("/wbhcristal", async function (request, response) {
     const pat1 = request.body.queryResult.parameters["pat1"];
 
     try {
-      const res = await axios.get("https://cristaltelecom.glitch.me/wbhcristal");
+      const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
       const results = res.data.filter(person => person.pat1 === pat1);
 
       if (results.length > 0) {
@@ -66,6 +66,6 @@ app.post("/wbhcristal", async function (request, response) {
   }
 });
 
-app.listen(() => {
-  console.log("Server started");
+app.listen(3000, () => {
+  console.log("Server started on port 3000");
 });
