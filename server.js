@@ -1,4 +1,4 @@
-const WebhookClient = require("dialogflow-fulfillment");
+const { WebhookClient } = require("dialogflow-fulfillment");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const express = require("express");
@@ -11,29 +11,61 @@ app.post("/wbhcristal", async function (request, response) {
   const agent = new WebhookClient({ request: request, response: response });
   const intentName = agent.intent;
 
-  if(intentName == 'teste') {
-    var pat1 = request.body.queryResult.parameters['pat1'];
+  if (intentName === "teste") {
+    const pat1 = request.body.queryResult.parameters["pat1"];
 
     try {
       const res = await axios.get("https://cristaltelecom.glitch.me/wbhcristal");
-      res.data.map(person => {
-        if (person.pat1 === pat1) {
-          response.json({
-            "fulfillmentText": "Detalhes para o pat1 " + pat1 + ":" + "\n" +
-              "ID da Ordem de Serviço: " + person.id + "\n" +
-              "Nome do Cliente: " + person.Nome + "\n" +
-              "Patrimônio Nº1: " + person.pat1 + "\n" +
-              "Patrimônio Nº2: " + person.pat2 + "\n" +
-              "Data da Configuração: " + person.data + "\n" +
-              "Hora da Configuração: " + person.hora + "\n" +
-              "Tipo da Configuração: " + person.tipo + "\n" +
-              "Responsável da Configuração: " + person.responsavel + "\n" +
-              "Link do Resultado: " + person.speedtest + "\n"
-          });
-        }
-      });
+      const results = res.data.filter(person => person.pat1 === pat1);
+
+      if (results.length > 0) {
+        const person = results[0];
+        const fulfillmentText =
+          "Detalhes para o pat1 " +
+          pat1 +
+          ":\n" +
+          "ID da Ordem de Serviço: " +
+          person.id +
+          "\n" +
+          "Nome do Cliente: " +
+          person.Nome +
+          "\n" +
+          "Patrimônio Nº1: " +
+          person.pat1 +
+          "\n" +
+          "Patrimônio Nº2: " +
+          person.pat2 +
+          "\n" +
+          "Data da Configuração: " +
+          person.data +
+          "\n" +
+          "Hora da Configuração: " +
+          person.hora +
+          "\n" +
+          "Tipo da Configuração: " +
+          person.tipo +
+          "\n" +
+          "Responsável da Configuração: " +
+          person.responsavel +
+          "\n" +
+          "Link do Resultado: " +
+          person.speedtest +
+          "\n";
+        response.json({ fulfillmentText });
+      } else {
+        response.json({
+          fulfillmentText: "Não foi possível encontrar detalhes para o pat1 " + pat1,
+        });
+      }
     } catch (error) {
       console.log(error);
+      response.json({
+        fulfillmentText: "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.",
+      });
     }
   }
+});
+
+app.listen(() => {
+  console.log("Server started");
 });
