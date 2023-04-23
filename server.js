@@ -59,14 +59,14 @@ app.post("/wbhcristal", async function (request, response) {
       } else {
         response.json({
           fulfillmentText:
-            "Não foi possível encontrar detalhes para o pat1 ou pat2 informado.",
+            "🚨 Desculpe, não foi possível encontrar detalhes para o *ID* ou *Patrimônio* informado. Tente novamente ou verifique se os dados estão corretos. 🧐",
         });
       }
     } catch (error) {
       console.log(error);
       response.json({
         fulfillmentText:
-          "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.",
+          "🚫 *Opa, algo deu errado!* 🚫 Infelizmente, não foi possível processar a sua solicitação no momento. Por favor, tente novamente mais tarde. 💻💥",
       });
     }
   }
