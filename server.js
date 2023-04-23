@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post("/wbhcristal", async function (request, response) {
   const agent = new WebhookClient({ request: request, response: response });
 
-  if (intentName == "patrimonios") {
+  if (intentName == "teste") {
     var pat1 = request.body.queryResult.parameters["pat1"];
 
     try {
