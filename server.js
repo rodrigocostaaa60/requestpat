@@ -14,13 +14,14 @@ app.post("/wbhcristal", async function (request, response) {
   if (intentName === "teste") {
     const pat1 = request.body.queryResult.parameters["pat1"];
 
-    
     try {
-      const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
-      const results = res.data.filter(
-        (person) => person.pat1 === pat1 || person.pat2 === pat1
-      );
-
+  const res = await axios.get("https://sheetdb.io/api/v1/w0t5ql0i871kj");
+  const results = res.data.filter(
+    (person) => person.id === pat1 ||
+                person.nome === pat1 ||
+                person.pat1 === pat1 ||
+                person.pat2 === pat1
+);
       if (results.length > 0) {
         const person = results[0];
         const fulfillmentText =
@@ -33,7 +34,7 @@ app.post("/wbhcristal", async function (request, response) {
           "*Nome do Cliente:* " +
           (person.nome ? person.nome : "N/A") +
           "\n" +
-        "*Patrimônio Nº1:* " +
+          "*Patrimônio Nº1:* " +
           person.pat1 +
           "\n" +
           "*Patrimônio Nº2:* " +
