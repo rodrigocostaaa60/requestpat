@@ -71,7 +71,10 @@ app.post("/wbhcristal", async function (request, response) {
       } else {
         response.json({
           fulfillmentText:
-            "🚨 Desculpe, não foi possível encontrar detalhes para o *ID* ou *Patrimônio* informado. Tente novamente ou verifique se os dados estão corretos. 🧐",
+            "🚨 Ops, infelizmente não conseguimos encontrar informações para o *ID* ou *Patrimônio* informado."  
+          "Por favor, certifique-se de que os dados estão corretos. É importante lembrar que este recurso está disponível apenas em *Jaguaquara* no momento.""\n" +
+          "\n" +"Caso esteja procurando o *ID*, você pode encontrá-lo ao lado do nome do cliente na ordem de serviço. Já o *Patrimônio* pode ser encontrado na parte debaixo do documento, escrito à caneta. 🧐"
+          "\n" +"Se precisar de mais assistência, entre em contato aqui pelo WhatsApp 📲. Estou pronto para ajudá-lo! 😊"
         });
       }
     } catch (error) {
