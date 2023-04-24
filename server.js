@@ -23,41 +23,50 @@ app.post("/wbhcristal", async function (request, response) {
           person.pat2 === pat1
       );
       if (results.length > 0) {
-        const person = results[0];
-        const fulfillmentText =
-          "*🔍 Detalhes para a Sua Busca:* " +
-          "\n" +
-          "\n" +
-          "*🆔 ID da Ordem de Serviço:* " +
-          person.id +
-          "\n" +
-              "*🔧 Tipo da Ordem:* " +
-          person.tipo +
-          "\n" +
-          "*👤 Nome do Cliente:* " +
-          person.nome +
-          "\n" +
-          "*💻 Patrimônio Nº1:* " +
-          person.pat1 +
-          "\n" +
-          "*💻 Patrimônio Nº2:* " +
-          person.pat2 +
-          "\n" +
-          "*📅 Data da Configuração:* " +
-          person.data +
-          "\n" +
-          "*⏰ Hora da Configuração:* " +
-          person.hora +
-          "\n" +
-          "*👷 Responsável pela Configuração:* " +
-          person.responsavel +
-          "\n" +
-          "*🌐 Teste de Conexão:* " +
-          person.speedtest +
-          "\n" +
-        "\n" +
+  const person = results[0];
+  let fulfillmentText = "*🔍 Detalhes para a Sua Busca:* " + "\n" + "\n";
+  
+  if (person.id) {
+    fulfillmentText += "*🆔 ID da Ordem de Serviço:* " + person.id + "\n";
+  }
+
+  if (person.tipo) {
+    fulfillmentText += "*🔧 Tipo da Ordem:* " + person.tipo + "\n";
+  }
+
+  if (person.nome) {
+    fulfillmentText += "*👤 Nome do Cliente:* " + person.nome + "\n";
+  }
+
+  if (person.pat1) {
+    fulfillmentText += "*💻 Patrimônio Nº1:* " + person.pat1 + "\n";
+  }
+
+  if (person.pat2) {
+    fulfillmentText += "*💻 Patrimônio Nº2:* " + person.pat2 + "\n";
+  }
+
+  if (person.data) {
+    fulfillmentText += "*📅 Data da Configuração:* " + person.data + "\n";
+  }
+
+  if (person.hora) {
+    fulfillmentText += "*⏰ Hora da Configuração:* " + person.hora + "\n";
+  }
+
+  if (person.responsavel) {
+    fulfillmentText += "*👷 Responsável pela Configuração:* " + person.responsavel + "\n";
+  }
+
+  if (person.speedtest) {
+    fulfillmentText += "*🌐 Teste de Conexão:* " + person.speedtest + "\n"
+  }
+        if (person.nome) {
+    fulfillmentText += "\n" +
         "*👀 Aí vai uma dica: você pode encontrar todas as configurações da rede Wi-Fi e PPPoE dos clientes nesse link: https://www.appsheet.com/start/ad91934c-eea5-437f-8a35-44e32589e724 🚀💻* " +
           "\n";
+  }
+        
         response.json({ fulfillmentText });
       } else {
         response.json({
