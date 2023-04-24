@@ -35,7 +35,7 @@ app.post("/wbhcristal", async function (request, response) {
           person.tipo +
           "\n" +
           "*👤 Nome do Cliente:* " +
-          (person.nome ? person.nome : "N/A") +
+          person.nome +
           "\n" +
           "*💻 Patrimônio Nº1:* " +
           person.pat1 +
